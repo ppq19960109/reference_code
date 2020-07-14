@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cd /usr/lib/modules/
+./loadxm530 -i
+. /usr/etc/loadpublic
+

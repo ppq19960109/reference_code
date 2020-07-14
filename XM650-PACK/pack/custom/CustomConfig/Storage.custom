@@ -1,0 +1,13 @@
+{
+    "Snapshot": [
+        {
+            "SnapMode": "ConfigSnap"
+        }
+    ],
+    "StorageFailure": {
+        "Enable": true
+    },
+    "StorageLowSpace": {
+        "Enable": false
+    }
+}

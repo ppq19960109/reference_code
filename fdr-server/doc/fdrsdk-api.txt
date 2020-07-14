@@ -1,0 +1,441 @@
+SDK API
+=======
+
+基本说明
+-------
+基本模型：
+第三方应用，通过本API调用，访问设备服务，调用基于HTTP协议；
+[Thirdparty App] <---API, http request/response---> [appliance:http server] 
+
+激活过程：[离线]
+1. 登陆设备，获取设备信息 => 设备ID号；
+2. 登陆微信小程序，提交设备ID号，设备管理员帐号，返回激活码，管理员帐号，管理员密码，管理员应急密码；
+3. 登陆设备，提交激活码，管理员帐号，管理员密码，管理员应急密码，激活设备；
+激活过程：[在线]
+1. 设备接入互联网；
+2. 登陆设备，获取设备ID；
+2. 登陆微信小程序，输入设备ID，激活设备；
+
+获取设备信息：
+---------
+请求：GET http://dev-ip/api/info
+返回：
+{
+    "manufacturer":"BaShi Technology Ltd. co,",
+    "device-id":"V1050-001A0000FA", // 16Bytes {version}-{batch number/serial number}
+    "deivce-info":"CPU A5; DDR 64Mb; eMMC 8GB; WIFI 2.4/5.8;"
+    "os-ver":"v2.1.0",
+    "algm-ver":"v2.1",
+    "app-ver":"v3.1",
+    "hw-ver":"v1.2",
+    "activation":"NO",
+    "license":"2022-03-01",
+
+    "server-address":"192.168.101.3",
+    "server-port":"8080",
+}
+
+重启设备：
+---------
+请求：POST http://dev-ip/api/restart
+{
+    "action":"restart"
+}
+
+返回：
+{
+    "retcode":101   // fail
+}
+
+
+配置设备，获取配置：
+---------------
+请求：POST http://dev-ip/api/config
+{
+    "action":"get",
+    "params":
+    [
+        "key-of-config0",
+        "key-of-config1",
+        "key-of-config3"
+    ]
+}
+
+返回：
+{
+    "retcode":0, 
+    "params":
+    [
+        { "key-of-config1" : "value-of-config1" },
+        { "key-of-config0" : "value-of-config0" },
+        { "key-of-config3" : "value-of-config3" }
+    ]
+}
+
+配置设备，设置配置：
+---------------
+请求：POST http://dev-ip/api/config
+{
+    "action":"set",
+    "params":
+    [
+        { "key-of-config1" : "value-of-config1" },
+        { "key-of-config2" : "value-of-config2" },
+        { "key-of-config3" : "value-of-config3" }
+    ]
+}
+
+返回：
+{
+    "retcode":0, 
+    "params":
+    [
+        { "key-of-config1" : 0 },   // 0, set ok, others fail
+        { "key-of-config2" : 0 },
+        { "key-of-config3" : 0 }
+    ]
+}
+
+配置项：
+-----
+// 配置云端服务器地址
+key:'cloud-server-address'
+val:'10.23.10.5'
+key:'cloud-server-port'
+val:'1080'
+
+// 配置管理服务器地址
+// 识别提示： GET http://$manager-server-address:$manager-server-port/$manager-server-path?devid=$device-id&userid=xxxx&logseq=xxx&octime=1502920
+// devid, 本设备的ID
+// userid, 识别出的用户ID
+// logseq, 识别日志序号
+// octime, 发生时间，1970，1，1，00：00：00，000到毫秒
+
+key:'manager-server-address'
+val:'10.23.11.10'
+key:'manager-server-port'
+val:'1080'
+key:'manager-server-path'
+val:'request-path'
+
+    "eth0-ipv4-address-mode",
+    "eth0-ipv4-address",
+
+    "wifi-ipv4-address-mode",
+    "wifi-ipv4-address",
+    
+// 配置识别参数与控制参数
+// 识别比对阈值
+key : recognize_thresh_hold
+val : 0.60f;
+// 陌生人跟踪延， 秒
+key : stranger_track_duration
+val : 5
+// 控制继电器开门时延，秒
+key : door_open_latency
+val : 5
+// 识别个人后显示持续时间
+key : recognized_show_latency
+val : 5
+// 陌生人提示持续时间
+key : stranger_show_latency
+val : 5
+// 长按开关进入配置模式时延
+key : keypress_duration_seconds
+val : 5
+
+// 识别后，485发送数据开始数据，结束数据，时延
+key : rs485_write_start
+val : 
+key : rs485_write_end
+val :
+key :rs485_delay
+val : 5
+
+
+访问认证：
+--------
+除登入外，调用需要在http header中添加authorization + token
+
+认证用户：
+请求：
+POST http://dev-ip/api/authen
+headers:
+User: user-name
+Passwd: "sha256-checksum-value"
+Realm:"local"
+
+返回：
+{  
+    "retcode":1, 
+    "token":"tocken-code"
+}
+
+
+用户操作
+-------
+---- user add ----
+请求：POST http://dev-ip/api/user
+{
+    "action":"add", 
+    "params": [
+        {
+            "userid":"asfasfweass",
+            "name":"who you ar", 
+            "desc":"user name", 
+            "passwd":"user passwd",
+            "phone":"123948372", 
+            "type":0,
+            "perm":1,
+            "expire":28198
+        },
+        {
+            "userid":"aasdfsadfedd",
+            "name":"I am who", 
+            "desc":"user name", 
+            "passwd":"user passwd",
+            "phone":"123948372", 
+            "type":0,
+            "perm":1,
+            "expire":28198
+        }
+    ]
+}
+返回：
+{
+    "retcode":0, 
+    "params" : [
+        "asfasfweass",
+        "aasdfsadfedd"
+    ]
+}
+
+---- user del ----
+请求：POST http://dev-ip/api/user
+{
+    "action":"del", 
+    "params": [
+        {
+            "userid":"asfasfweass"
+        },
+        {
+            "userid":"aasdfsadfedd"
+        }
+    ]
+}
+返回：
+{
+    "retcode":0, 
+    "params" : [
+        "asfasfweass",
+        "aasdfsadfedd"
+    ]
+}
+
+---- user update ----
+请求：POST http://dev-ip/api/user
+{
+    "action":"update", 
+    "params": [
+        {
+            "userid":"asfasfweass",
+            "name":"who you ar", 
+            "phone":"123948372", 
+            "type":0,
+            "expire":28198
+        },
+        {
+            "userid":"aasdfsadfedd",
+            "name":"I am who",
+            "type":0,
+            "perm":1
+        }
+    ]
+}
+返回：
+{
+    "retcode":0, 
+    "params": ["
+        "asfasfweass",
+        "aasdfsadfedd"
+    ]
+}
+
+
+---- user info ----
+请求：POST http://dev-ip/api/user
+{
+    "action":"info",
+    "params": [
+        {
+            "userid":"asfasfweass",
+        },
+        {
+            "userid":"aasdfsadfedd",
+        }
+    ]
+}
+返回：
+{
+    "retcode":0, 
+    "params": [
+        {
+            "userid":"as212fasfweass",
+            "name":"who you ar", 
+            "desc":"user name", 
+            "passwd":"user passwd",
+            "phone":"123948372", 
+            "type":0,
+            "perm":1,
+            "expire":28198
+        },
+        {
+            "userid":"asfasfweasdasfss",
+            "name":"who you ar", 
+            "desc":"user name", 
+            "passwd":"user passwd",
+            "phone":"123948372", 
+            "type":0,
+            "perm":1,
+            "expire":28198
+        }
+    ]
+}
+
+
+---- user list ----
+请求：POST http://dev-ip/api/user
+{
+    "action":"list"
+}
+返回：
+{
+    "retcode":0, 
+    "params": [
+        "asfasfweass",
+        "aasdfsadfedd"
+    ]
+}
+
+识别日志操作
+----------
+请求：POST http://dev-ip/api/logger
+{
+    "action":"fetch", 
+    "seqnum": 10,
+    "number": 1
+}
+
+返回：
+{
+    "retcode":0,
+    
+    "logger":[
+    {
+        "seqnum":1024,
+        "occtime": 15299040382,
+        "face_x":  100,
+        "face_y": 200,
+        "face_w": 500,
+        "face_h": 300,
+        "sharp": 84.2,
+        "score": 95.2,
+        "userid": "asdadafa"
+    },
+    {
+        "seqnum":1025,
+        "occtime": 15299045000,
+        "face_x":  100,
+        "face_y": 200,
+        "face_w": 500,
+        "face_h": 300,
+        "sharp": 84.2,
+        "score": 95.2,
+        "userid": "awefa0q3rq", 
+    },
+    {
+        "seqnum":1024,
+        "occtime": 15299046000,
+        "face_x":  100,
+        "face_y": 200,
+        "face_w": 500,
+        "face_h": 300,
+        "sharp": 84.2,
+        "score": 95.2,
+        "userid": "0000000000000000"
+    }
+    ]
+}
+
+
+操作日志操作
+----------
+请求：POST http://dev-ip/api/logger
+{
+    "action":"opslog", 
+    "param":{
+        "userid" : "asdadfad",  // 不给userid则所有的记录
+        "datetime" : "2019-08-23 12:23:20",
+        "count": 5  // 取多少个，默认个数可以配置，一般不超过10个；
+    }
+}
+
+返回：
+{
+    "retcode":0,
+    
+    "data":[
+    {
+        "userid" : "asdadfad", 
+        "datetime" : "2019-08-23 12:23:20",
+        "ops" : "asfafas"
+    }
+    ]
+}
+
+上传人脸图片
+----------
+请求：PUT http://dev-ip/upload
+Headers: 
+Content-Type: image/nv12
+Content-Length: file-Length
+Transfer-Encoding:chunked
+Expect:100-continue
+
+User-ID: userid of the image
+Image-Width: 256
+Image-Heigh: 256
+Image-Type:nv12/bmp
+
+返回：
+{
+    "retcode":0 
+}
+
+
+上传公钥
+----------
+请求：PUT http://dev-ip/pubkey
+Headers: 
+Content-Type: application/octet-stream
+Content-Length: file-Length
+
+返回：
+{
+    "retcode":0 
+}
+
+
+下载识别记录图片
+-------------
+请求：GET http://dev-ip/download
+Headers: 
+timestamp : datetime in ms
+
+返回：
+Content-Type: jpeg/image
+Content-Length: file-Length
+Transfer-Encoding:chunked
+FetchResult:ok/fail
+body -> file
+

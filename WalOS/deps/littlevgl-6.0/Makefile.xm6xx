@@ -1,0 +1,54 @@
+#
+# Makefile
+#
+CC = arm-xm-linux-gcc
+LVGL_DIR ?= ${shell pwd}
+FDRSDK=../../../fdrsdk-xm630
+FDRSDKSUBDIRS = $(shell find $(FDRSDK)/libs  -maxdepth 2 -type d)
+LDDIRS=$(patsubst %,-L%, $(FDRSDKSUBDIRS))
+
+FDRSDIR = $(foreach dir,$(FDRSDKSUBDIRS),$(wildcard $(dir)/*.a))
+FDRLIBNAME=$(notdir $(FDRSDIR))
+FDRLIBS=$(patsubst lib%.a,-l%, $(FDRLIBNAME))
+LIBS_FDR =$(filter-out -lispapp_XM530, $(FDRLIBS))
+
+CFLAGS ?= -Wall -O3 -g -DXM6XX -I$(LVGL_DIR)/ -I$(LVGL_DIR)/../freetype-2.4.0/include
+LDFLAGS ?= -L../freetype-2.4.0/objs/.libs -Wl,--start-group -lm -lfreetype -lpthread  $(LDDIRS) $(LIBS_FDR)  -Wl,--end-group
+
+LVGLLIB = liblvgl.a
+BIN = lvgl-test
+
+#Collect the files to compile
+MAINSRC = ./main.c
+
+include $(LVGL_DIR)/lvgl/lvgl.mk
+include $(LVGL_DIR)/lv_drivers/lv_drivers.mk
+#include $(LVGL_DIR)/lv_examples/lv_examples.mk
+
+#CSRCS +=$(LVGL_DIR)/mouse_cursor_icon.c
+
+OBJEXT ?= .o
+
+AOBJS = $(ASRCS:.S=$(OBJEXT))
+COBJS = $(CSRCS:.c=$(OBJEXT))
+
+MAINOBJ = $(MAINSRC:.c=$(OBJEXT))
+
+SRCS = $(ASRCS) $(CSRCS) $(MAINSRC)
+OBJS = $(AOBJS) $(COBJS)
+
+## MAINOBJ -> OBJFILES
+
+all: default
+
+%.o: %.c
+	@$(CC)  $(CFLAGS) -c $< -o $@
+	@echo "CC $<"
+
+default: $(AOBJS) $(COBJS) $(MAINOBJ)
+	ar -rcs $(LVGLLIB) $(AOBJS) $(COBJS)
+	$(CC) -o $(BIN) $(MAINOBJ) $(AOBJS) $(COBJS) $(LDFLAGS)
+
+clean:
+	rm -f $(BIN) $(AOBJS) $(COBJS) $(MAINOBJ)
+

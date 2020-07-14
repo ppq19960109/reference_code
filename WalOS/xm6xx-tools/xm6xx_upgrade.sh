@@ -1,0 +1,61 @@
+#!/bin/sh
+
+#emmc path
+EMMC_HOME=/var/sd/app
+EMMC_BIN_PATH=$EMMC_HOME/bin
+EMMC_USR_PATH=$EMMC_HOME/usr
+EMMC_CLASSIFIER_PATH=$EMMC_HOME/data/classifier
+EMMC_GUI_PATH=$EMMC_HOME/data/ui
+EMMC_GUI_EN_PATH=$EMMC_HOME/data/ui-en
+EMMC_DB_PATH=$EMMC_HOME/data/db
+EMMC_USER_IMG_PATH=$EMMC_HOME/data/users
+EMMC_CAPTURE_IMG_PATH=$EMMC_HOME/data/images
+EMMC_VOICE_PATH="$EMMC_HOME/data/voice"
+
+#upgrade path
+FDRSERVER_NAME=fdrserver
+ISP_NAME=isp
+CLASSIFIER_PATH=classifier
+GUI_PATH=ui
+GUI_EN_PATH=ui-en
+DB_PATH=db
+VOICE_PATH=voice
+BIN_PATH=bin
+#UPGRADE_JSON=upgrade.json
+
+#do copy
+cp $FDRSERVER_NAME $EMMC_USR_PATH/
+cp $ISP_NAME $EMMC_USR_PATH/
+
+#rm -f $EMMC_BIN_PATH/*
+#cp $BIN_PATH/* $EMMC_BIN_PATH/
+
+rm -f $EMMC_CLASSIFIER_PATH/*
+cp $CLASSIFIER_PATH/* $EMMC_CLASSIFIER_PATH/
+
+mkdir -p $EMMC_GUI_PATH
+rm -f $EMMC_GUI_PATH/*
+cp $GUI_PATH/* $EMMC_GUI_PATH/
+
+mkdir -p $EMMC_GUI_EN_PATH
+rm -f $EMMC_GUI_EN_PATH/*
+cp $GUI_EN_PATH/* $EMMC_GUI_EN_PATH/
+
+mkdir -p $EMMC_VOICE_PATH
+rm -f $EMMC_VOICE_PATH/*
+cp $VOICE_PATH/* $EMMC_VOICE_PATH/
+
+#!<<EOF
+#cp $UPGRADE_JSON $EMMC_DB_PATH/
+
+mkdir -p $EMMC_DB_PATH
+rm -rf $EMMC_DB_PATH/*
+cp $DB_PATH/* $EMMC_DB_PATH/
+
+#clean
+rm -rf  $EMMC_USER_IMG_PATH/*
+rm -rf  $EMMC_CAPTURE_IMG_PATH/*
+#EOF
+
+sync
+

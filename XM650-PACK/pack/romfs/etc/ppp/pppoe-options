@@ -1,0 +1,35 @@
+#ipdefault
+#noauth 
+#default-asyncmap 
+#defaultroute 
+#hide-password 
+#nodetach 
+#usepeerdns
+#mtu 1492 
+#user xxx
+#noaccomp
+#noccp
+#nopcomp
+#novj
+#novjccomp
+#lcp-echo-interval 20
+#lcp-echo-failure 3 
+
+noipdefault
+noauth
+default-asyncmap
+defaultroute
+hide-password
+nodetach
+usepeerdns
+mtu 1492
+user jufeng 
++ua /etc/ppp/pap-secrets
+noaccomp
+noccp
+nopcomp
+novj
+novjccomp
+lcp-echo-interval 20
+lcp-echo-failure 3
+

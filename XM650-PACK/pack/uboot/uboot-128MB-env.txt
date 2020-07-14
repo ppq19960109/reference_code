@@ -1,0 +1,24 @@
+baudrate=115200
+bootargs=mem=80M console=ttyAMA0,115200 root=/dev/mtdblock2 rootfstype=cramfs mtdparts=xm_sfc:256K(boot),1664K(kernel),1152K(romfs),4544K(user),256K(custom),320K(mtd)
+bootcmd=bootm 0x60040000
+bootdelay=1
+cramfsaddr=0x60040000
+da=tftp 0x81000000 u-boot.bin.img;sf probe 0;flwrite
+dc=tftp 0x81000000 custom-x.cramfs.img;sf probe 0;flwrite
+dd=mw.b 0x81000000 ff 800000;tftp 0x81000000 mtd-x.jffs2.img;sf probe 0;flwrite
+dr=tftp 0x81000000 romfs-x.cramfs.img;sf probe 0;flwrite
+du=tftp 0x81000000 user-x.cramfs.img;sf probe 0;flwrite
+dw=tftp 0x81000000 web-x.cramfs.img;sf probe 0;flwrite
+ethact=dwmac.10010000
+ethaddr=00:01:02:03:04:00
+ipaddr=192.168.20.10
+netmask=255.255.255.0
+serverip=192.168.20.99
+stderr=serial
+stdin=serial
+stdout=serial
+tk=tftp 0x81000000 uImage; bootm 0x81000000
+ua=mw.b 0x81000000 ff 800000;tftp 0x81000000 upall_verify.img;sf probe 0;flwrite
+up=tftp 0x81000000 update.img;sf probe 0;flwrite
+xmuart=0
+

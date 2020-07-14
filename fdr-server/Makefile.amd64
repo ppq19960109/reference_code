@@ -1,0 +1,154 @@
+
+#
+# littlevgl postion : ../third-party/pc_simulator
+#
+
+CROSS =
+ARCH = amd64
+
+CC = $(CROSS)gcc
+
+LVGL = ./thirdparts/littlevgl-6.0
+
+vpath 	%.h 	include thirdparts/misc
+vpath 	%.c 	src thirdparts/misc
+vpath 	%.o 	objs
+
+INCLUDE = -I. -I./include -I./thirdparts/misc -I$(LVGL) -I./include -I$(LVGL)/lvgl 
+
+
+CFLAGS = -g -O -Wall $(INCLUDE) -D__USE_XOPEN
+
+LIBS =  -pthread -levent_pthreads -levent -ldl -lm -lSDL2  -lfreetype -llvgl
+LDFLAGS =  -L$(LVGL) $(LIBS)
+
+
+common-objs =  				\
+		logger.o			\
+		sqlite3.o 			\
+		cJSON.o				\
+		base58.o 			\
+		sha256.o            \
+		lodepng.o 			\
+		ecc.o
+
+base-objs =					\
+		fdr.o   			\
+		fdr-util.o			\
+		fdr-version.o 		\
+		fdr-license.o
+
+gui-objs =					\
+		lv_gc.o				\
+		fdr-gui-decoder.o   \
+		fdr-gui.o			
+
+
+db-objs =					\
+		fdr-dbs-guest.o 	\
+		fdr-dbs-config.o 	\
+		fdr-dbs-user.o 		\
+		fdr-dbs-feature.o	\
+		fdr-dbs.o
+
+
+dp-objs =					\
+		bisp-amd64.o 		\
+		fdr-logger.o 		
+	
+cp-objs = 					\
+		fdr-qrcode.o 		\
+		fdr-cp-xmui.o     	\
+		fdr-cp.o 
+
+mp-objs = 					\
+		fdr-handler.o		\
+		fdr-handler-user.o	\
+		fdr-handler-logger.o \
+		fdr-mp.o 			\
+		fdr-mp-local.o		\
+		fdr-mp-cloud.o		\
+		fdr-discover.o 		\
+		fdr-network.o 
+
+test-dbs = bisp-amd64.o  fdr-test.o fdr-dbs-test.o 
+
+test-handler = 					\
+		bisp-amd64.o 			\
+		fdr-test.o    			\
+		fdr-util.o				\
+		fdr-logger.o 			\
+		fdr-handler-t.o 		\
+		fdr-handler-user.o 		\
+		fdr-handler-logger.o 	\
+		fdr-handler-test.o 
+
+test-cp = 						\
+		bisp-amd64-t.o 			\
+		fdr-test.o    			\
+		fdr-license.o 			\
+		fdr-util.o				\
+		fdr-logger.o 			\
+		fdr-handler.o 			\
+		fdr-handler-user.o 		\
+		fdr-handler-logger.o 	\
+		fdr-cp.o 				\
+		fdr-cp-xmui.o 			\
+		fdr-qrcode.o         	\
+		fdr-cp-test.o
+
+test-mp = 						\
+		fdr-version.o 			\
+		fdr-license.o 			\
+		bisp-amd64.o 			\
+		fdr-t.o    				\
+		fdr-util.o				\
+		fdr-logger.o 			\
+		fdr-handler.o 			\
+		fdr-handler-user.o 		\
+		fdr-handler-logger.o 	\
+		fdr-discover.o    		\
+		fdr-mp.o 				\
+		fdr-mp-cloud.o 			\
+		fdr-mp-local.o			\
+		fdr-mp-test.o
+
+main-objs = main.o
+
+fdr-objs = $(common-objs) $(base-objs) $(db-objs)  $(dp-objs)  $(cp-objs) $(mp-objs) $(gui-objs)
+
+TARGET = fdrserver
+
+
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o objs/$@  $<
+
+$(TARGET) : $(fdr-objs) $(main-objs)
+	$(CC)  -o $(TARGET)  $(addprefix objs/, $(fdr-objs) $(main-objs)) $(LDFLAGS)
+	mv $(TARGET)  install/$(TARGET)
+
+clean-all:
+	rm -f $(addprefix objs/, $(fdr-objs) $(main-objs))  install/$(TARGET)
+
+clean:
+	rm -f $(addprefix objs/, $(base-objs) $(db-objs) $(gui-objs) $(dp-objs)  $(cp-objs) $(mp-objs) $(main-objs))  install/$(TARGET)
+
+
+lv_gc.o :
+	cp $(LVGL)/lv_gc.o  objs/lv_gc.o
+
+bisp-amd64-t.o : bisp-amd64.c
+	$(CC) $(CFLAGS) -DTEST -c -o objs/$@  $<
+
+fdr-t.o : fdr.c
+	$(CC) $(CFLAGS) -DTEST -c -o objs/$@  $<
+
+fdr-handler-t.o : fdr-handler.c
+	$(CC) $(CFLAGS) -DTEST -c -o objs/$@  $<
+
+test: $(test-dbs) $(test-handler) $(test-cp) $(test-mp) $(common-objs) $(db-objs)
+	$(CC) -o fdr-dbs-test  $(addprefix objs/, $(common-objs) $(db-objs) $(test-dbs)) $(LDFLAGS)
+	$(CC) -o fdr-handler-test  $(addprefix objs/, $(common-objs) $(db-objs) $(test-handler)) $(LDFLAGS)
+	$(CC) -o fdr-mp-test  $(addprefix objs/, $(common-objs) $(db-objs) $(test-mp)) $(LDFLAGS)
+	$(CC) -o fdr-cp-test  $(addprefix objs/, $(common-objs) $(db-objs) $(test-cp)) $(LDFLAGS)

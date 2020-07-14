@@ -1,0 +1,18 @@
+
+                    |--> 2. Display to screen, share memory
+1. HW capture Image ---> 3. Send to AI Engine
+
+==================
+Directory
+---------
+1. classifier    -> AI Engine classifier data
+2. images/users   -> user image picture, name is userid
+3. images/   -> user image picture, name is userid
+
+4. dbs.sqlite -> configure, user info
+5. logger.sqlite -> operation logger & fdr logger
+
+
+
+
+

@@ -1,0 +1,9 @@
+{
+	"Device": "80X20",
+	"OEM": "General",
+	"InfraredIO": 255,
+	"InfraredSwap": 0,
+	"IrCutIO": 1,
+	"IrCutSwap": 0,
+	"SoftLED": 0
+}

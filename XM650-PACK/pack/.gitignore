@@ -1,0 +1,6 @@
+custom.cramfs
+user.cramfs
+mtd.jffs2
+romfs.cramfs
+*.bin
+*.img

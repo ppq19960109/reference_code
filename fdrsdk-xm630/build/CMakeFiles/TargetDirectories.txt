@@ -1,0 +1,9 @@
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/install/strip.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/install/local.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/install.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/A1050.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/A1000.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/bsm650fv100.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/edit_cache.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/rebuild_cache.dir
+/home/ppq/linux/git/fdrsdk-xm630/build/CMakeFiles/list_install_components.dir

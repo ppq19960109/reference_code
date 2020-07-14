@@ -1,0 +1,28 @@
+#!bin/sh
+
+/etc/init.d/dnode
+
+/bin/echo /sbin/mdev > /proc/sys/kernel/hotplug
+mdev -s
+
+mount -t cramfs /dev/mtdblock3 /usr
+mount -t cramfs /dev/mtdblock4 /mnt/custom   
+mount -t jffs2  /dev/mtdblock5 /mnt/mtd
+
+mount -t ramfs  /dev/mem        /var
+mkdir -p /var/tmp
+mkdir -p /var/nfs
+mkdir -p /var/sd
+
+mount -t ramfs  /dev/mem        /tmp
+
+
+/usr/etc/loadmod
+
+#telnetd &
+
+ifconfig eth0 up 192.168.20.10 netmask 255.255.255.0
+route add default gw 192.168.20.1
+
+/etc/init.d/app.sh &
+

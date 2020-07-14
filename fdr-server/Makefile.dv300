@@ -1,0 +1,40 @@
+CROSS+=
+CC = $(CROSS)gcc
+
+INCLUDE = -I../fdrsdk-armv7a-linux
+CFLAGS = -g -O2 -Wall $(INCLUDE)
+
+LIBS = 
+LDFLAGS = -pthread -levent -L../algm-es -leyesense
+
+fr-objs = 		\
+		sqlite3.o 	\
+		cJSON.o		\
+		fr_dbs.o	\
+		fr_log.o	\
+		fr_ops.o	\
+		fr_mgs.o	\
+		fr_web.o	\
+		main.o
+
+es-objs = 		\
+		fr_log.o 	\
+		fr_cap-yuvfile.o 	\
+		fr_rec.o	\
+		es-main.o
+
+TARGET = fr
+EYESENSE = es
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o $@  $<
+
+$(TARGET) : $(fr-objs)
+	$(CC)  -o $(TARGET) $(fr-objs) $(LDFLAGS)
+
+$(EYESENSE) : $(es-objs)
+	$(CC) -o $(EYESENSE) $(es-objs) $(LDFLAGS)
+
+clean:
+	rm -f $(fr-objs)  $(es-objs) $(TARGET)
+

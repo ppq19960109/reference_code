@@ -1,0 +1,8 @@
+{
+	"Device": "80X20",
+	"Alarm":
+	{
+		"InPorts": [41],
+		"OutPorts": [49]
+	}
+}

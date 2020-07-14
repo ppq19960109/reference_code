@@ -1,0 +1,168 @@
+test/test_regress-tinytest.o: test/tinytest.c \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/stdio.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/features.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_config.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/cdefs.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/lib/gcc/arm-xm-linux-uclibcgnueabi/4.9.2/include/stddef.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/types.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/wordsize.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/typesizes.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/pthreadtypes.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/endian.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/endian.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/byteswap.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap-common.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_stdio.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/wchar.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/wchar.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_mutex.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/pthread.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sched.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/time.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sched.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/stdlib.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/types.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/select.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/select.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigset.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/time.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/sysmacros.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/alloca.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_clk_tck.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/signal.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/setjmp.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_pthread.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/lib/gcc/arm-xm-linux-uclibcgnueabi/4.9.2/include/stdarg.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/stdio_lim.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/string.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/assert.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/wait.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/signum.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/siginfo.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigaction.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigcontext.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/asm/sigcontext.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigstack.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigthread.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/resource.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/resource.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/waitflags.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/waitstatus.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/unistd.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/posix_opt.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/confname.h \
+ /opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/getopt.h \
+ test/tinytest.h test/tinytest_macros.h
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/stdio.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/features.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_config.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/cdefs.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/lib/gcc/arm-xm-linux-uclibcgnueabi/4.9.2/include/stddef.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/types.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/wordsize.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/typesizes.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/pthreadtypes.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/endian.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/endian.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/byteswap.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/byteswap-common.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_stdio.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/wchar.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/wchar.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_mutex.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/pthread.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sched.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/time.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sched.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/stdlib.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/types.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/select.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/select.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigset.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/time.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/sysmacros.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/alloca.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_clk_tck.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/signal.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/setjmp.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/uClibc_pthread.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/lib/gcc/arm-xm-linux-uclibcgnueabi/4.9.2/include/stdarg.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/stdio_lim.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/string.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/assert.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/wait.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/signum.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/siginfo.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigaction.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigcontext.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/asm/sigcontext.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigstack.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/sigthread.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/sys/resource.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/resource.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/waitflags.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/waitstatus.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/unistd.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/posix_opt.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/confname.h:
+
+/opt/xm_toolchain/arm-xm-linux/usr/arm-xm-linux-uclibcgnueabi/sysroot/usr/include/bits/getopt.h:
+
+test/tinytest.h:
+
+test/tinytest_macros.h:

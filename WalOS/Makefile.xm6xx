@@ -1,0 +1,87 @@
+#
+# Copyright (c) 2019, Bashi Tech. All rights reserved.
+#
+
+CROSS	= arm-xm-linux-
+CC	= $(CROSS)gcc
+CPP	= $(CROSS)g++ -std=c++11
+LD	= $(CROSS)ld
+AR	= $(CROSS)ar
+STRIP = $(CROSS)strip
+RM	= @echo " RM	"; rm -f
+
+LVGL = ./deps/littlevgl-6.0
+LUAJIT = ./deps/LuaJIT-2.1.0-beta3
+LIBEVENT = ./deps/libevent-2.1.11-stable
+FREETYPE = ./deps/freetype-2.4.0
+FDRSDK=../fdrsdk-xm630
+
+vpath 	%.h 	include deps/misc
+vpath 	%.c 	src deps/misc
+vpath 	%.o 	objs
+
+INCLUDE = -I. -I./include -I./deps/misc -I$(LVGL) -I$(LVGL)/lvgl -I$(LUAJIT)/src -I$(LIBEVENT)/include -I$(FREETYPE)/include
+
+CFLAGS = -g -O -Wall $(INCLUDE) -D__USE_XOPEN
+CFLAGS += -DXM6XX
+CFLAGS += -DXM630
+CFLAGS += -DUI_LANG=0
+CFLAGS += -g -O2 -Wall $(INCLUDE)  -mcpu=cortex-a5 -mfloat-abi=softfp -mfpu=neon-vfpv4 -mno-unaligned-access -fno-aggressive-loop-optimizations -flax-vector-conversions -fsigned-char -fopenmp
+CFLAGS += -D_GNU_SOURCE -D__USE_XOPEN
+
+FDRSDKSUBDIRS = $(shell find $(FDRSDK)/libs  -maxdepth 2 -type d)
+LDDIRS=$(patsubst %,-L%, $(FDRSDKSUBDIRS))
+
+FDRSDIR = $(foreach dir,$(FDRSDKSUBDIRS),$(wildcard $(dir)/*.a))
+FDRLIBNAME=$(notdir $(FDRSDIR))
+FDRLIBS=$(patsubst lib%.a,-l%, $(FDRLIBNAME))
+LIBS_FDR =$(filter-out -lispapp_XM530, $(FDRLIBS))
+
+LIBS =   -Wl,--start-group -levent -levent_pthreads -llvgl -lfreetype -lluajit -lfdrsdk_xm650 -pthread -lm -ldl -lstdc++ \
+				$(LIBS_FDR) -ljson -Wl,--end-group
+
+LDFLAGS = -rdynamic -L$(LVGL) -L$(LUAJIT)/src -L$(LIBEVENT)/.libs -L$(FREETYPE)/objs/.libs -L$(FDRSDK)/build/bin $(LDDIRS) $(LIBS)
+
+
+base-objs =  				\
+		logger.o			\
+		ecc.o 				\
+		sha256.o 			\
+		lodepng.o
+
+dp-objs =					\
+		bisp-amd64.o
+
+cp-objs = 					\
+		fdrcp-utils.o 		\
+		fdrcp-lua.o   		\
+		fdrcp.o fdrcp-test.o
+
+gui-objs =					\
+		lv_gc.o				\
+		lvgui-decoder.o     \
+		lvgui-yuv.o 		\
+		lvgui.o	lvgui-test.o
+
+walnuts-objs = 				\
+		walos-utils.o 		\
+		walos-lua.o
+
+main-objs = walos.o
+
+objs = $(base-objs) $(dp-objs) $(cp-objs) $(gui-objs) $(walnuts-objs)
+
+TARGET = walos
+
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o objs/$@  $<
+
+$(TARGET) : $(objs) $(main-objs)
+	$(CC)  -o $(TARGET)  $(addprefix objs/, $(objs) $(main-objs)) $(LDFLAGS)
+
+clean:
+	rm -f $(addprefix objs/, $(objs) $(main-objs))  $(TARGET)
+
+lv_gc.o :
+	cp $(LVGL)/lv_gc.o  objs/lv_gc.o

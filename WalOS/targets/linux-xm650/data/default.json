@@ -1,0 +1,292 @@
+{
+    "items":[
+    {
+         "key":"manufacturer",
+         "value":"BaShi Technology Ltd. co,",
+         "options" : 0
+    },
+
+    {
+        "key":"device-info",
+         "value":"ARM A5 x 2; DDR 128MB; eMMC 8GB;",
+         "options" : 0
+    },
+
+    {
+        "key":"device-id",
+        "value":"KssDeLd5m6wYRiNXKFCHqe",
+         "options" : 0
+    },
+
+
+    {
+        "key":"device-mode",
+         "value":"mixed",
+         "options" : 1
+    },
+
+    {
+        "key":"linux-version",
+         "value":"3.18.0",
+         "options" : 0
+    },
+
+    {
+        "key":"firmware-version",
+         "value":"3.1.0",
+         "options" : 0
+    },
+
+    {
+        "key":"hardware-version",
+         "value":"2.1.0",
+         "options" : 0
+    },
+
+    {
+        "key":"protocol-version",
+         "value":"2.1.0",
+         "options" : 0
+    },
+
+    {
+        "key":"activation",
+         "value":"1",
+         "options" : 1
+    },
+
+    {
+        "key":"ether-ipv4-address-mode",
+         "value":"dynamic",
+         "options" : 1
+    },
+
+    {
+        "key":"ether-ipv4-address",
+         "value":"192.168.20.10",
+         "options" : 1
+    },
+
+    {
+        "key":"ether-ipv4-mask",
+         "value":"255.255.255.0",
+         "options" : 1
+    },
+
+    {
+        "key":"ether-ipv4-gw",
+         "value":"192.168.20.1",
+         "options" : 1
+    },
+
+    {
+        "key":"ether-dns-server",
+         "value":"114.114.114.114",
+         "options" : 1
+    },
+
+    {
+        "key":"wifi-ipv4-address-mode",
+         "value":"dynamic",
+         "options" : 1
+    },
+
+    {
+        "key":"wifi-ipv4-address",
+         "value":"192.168.10.10",
+         "options" : 1
+    },
+
+    {
+        "key":"wifi-ipv4-mask",
+         "value":"255.255.255.0",
+         "options" : 1
+    },
+
+    {
+        "key":"wifi-ipv4-gw",
+         "value":"192.168.20.1",
+         "options" : 0
+    },
+    {
+        "key":"wifi-dns-server",
+         "value":"114.114.114.114",
+         "options" : 1
+    },
+
+    {
+        "key":"cloud-server-address",
+         "value":"127.0.0.1",
+         "options" : 1
+    },
+
+    {
+        "key":"cloud-server-port",
+         "value":"8000",
+         "options" : 1
+    },
+
+    {
+        "key":"cloud-reconnect-duration" ,
+         "value": "16",
+         "options" : 1
+    },
+
+    {
+        "key":"hearbeat-duration" ,
+         "value": "5",
+         "options" : 1
+    },
+
+    {
+        "key":"manager-server-address",
+         "value":"127.0.0.1",
+         "options" : 1
+    },
+
+    {
+        "key":"manager-server-port",
+         "value":"3000",
+         "options" : 1
+    },
+
+    {
+        "key":"manager-server-path",
+         "value":"report",
+         "options" : 1
+    },
+
+    {
+        "key":"user-max",
+         "value": "1000",
+         "options" : 2
+    },
+
+    {
+        "key":"user-logr-max",
+         "value": "40000",
+         "options" : 2
+    },
+
+    {
+        "key":"visitor-max",
+         "value": "100",
+         "options" : 2
+    },
+
+    {
+        "key":"visitor-duration",
+         "value": "2",
+         "options" : 2
+    },
+
+    {
+        "key":"tips-duration",
+         "value": "2",
+         "options" : 2
+    },
+
+    {
+        "key":"recognized-duration",
+         "value": "2",
+         "options" : 2
+    },
+
+    {
+        "key":"advertising-duration",
+         "value": "10",
+         "options" : 2
+    },
+
+    {
+        "key":"door-duration",
+         "value": "3",
+         "options" : 2
+    },
+
+    {
+        "key":"info-duration",
+         "value":"10",
+         "options" : 2
+    },
+
+    {
+        "key":"visitor-mode",
+         "value":"1",
+         "options" : 2
+    },
+
+    {
+        "key":"rs485-mode",
+         "value":"0",
+         "options" : 2
+    },
+
+    {
+        "key":"voice-mode",
+         "value":"1",
+         "options" : 2
+    },
+
+    {
+        "key":"relay-mode",
+         "value":"1",
+         "options" : 2
+    },
+
+    {
+        "key":"therm-mode",
+         "value":"0",
+         "options" : 2
+    },
+
+    {
+        "key":"healthcode-mode",
+         "value":"1",
+         "options" : 2
+    },
+
+    {
+        "key":"therm-fix",
+        "value":"0",
+        "options":2
+    },
+
+    {
+        "key":"therm-threshold",
+        "value":"36.5",
+        "options":2
+    },
+
+    {
+        "key":"event-mode",
+         "value":"1",
+         "options" : 1
+    },
+
+    {
+        "key":"algm-threshold",
+         "value":"0.8",
+         "options" : 2
+    },
+
+    {
+        "key":"algm-version",
+         "value":"3",
+         "options" : 2
+    },
+
+
+    {
+        "key":"rs485-start-data",
+         "value":"open-door-rs485-data",
+         "options" : 2
+    },
+
+    {
+        "key":"rs485-close-data",
+         "value":"close-door-rs485-data",
+         "options" : 2
+    }
+    ]
+}

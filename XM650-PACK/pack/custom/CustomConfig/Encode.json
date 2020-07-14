@@ -1,0 +1,51 @@
+{
+	"CaptureSizes": 
+	{
+	},
+	"Vi":
+	{
+		"SensorFPS": 25,
+		"CapWHXY": [1920, 1080, 0, 0],
+		"ViX":
+		[
+			{
+				"Channel": 0,
+				"CapSize": "1080P"
+			},
+			{
+				"Channel": 1,
+				"CapSize": "D1"
+			}
+		]
+	},
+	"Venc":
+	{
+		"VencType": ["H264", "H264PLUS"],
+		"VencX":
+		[
+			{
+				"Channel": 0,
+				"MaxSize": "1080P",
+				"CapSizeSrc": ["1080P"]
+			},
+			{
+				"Channel": 1,
+				"MaxSize": "D1",
+				"CapSizeSrc": ["D1", "CIF"]
+			}
+		],
+		"Jpeg":
+		{
+			"Channel": 3,
+			"MaxSize": "D1",
+			"CapSizeSrc": ["D1", "CIF"]
+		}
+	},
+	"Audio":
+	{
+		"AudioPlayEnable": true
+	},
+	"Isp":
+	{
+	}
+}

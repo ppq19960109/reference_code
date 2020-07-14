@@ -1,0 +1,73 @@
+#!/bin/sh
+
+WIFI="XM711"
+
+insmod /usr/lib/modules/sdio0_sd.ko
+insmod /usr/lib/modules/dwc_common_port_lib.ko
+insmod /usr/lib/modules/dwc_otg.ko
+#4gdialer &
+
+if [ "$WIFI" = "XM712" ]; then
+	(
+	insmod /usr/lib/modules/wifi_pdn.ko value=49
+	insmod /usr/lib/modules/compat.ko
+	insmod /usr/lib/modules/cfg80211.ko
+	insmod /usr/lib/modules/xm712.ko
+	#wlandaemon &
+	)&
+fi
+
+if [ "$WIFI" = "XM711" ]; then
+	#insmod /usr/lib/modules/wifi_pdn.ko value=49
+	#insmod /usr/lib/modules/compat.ko
+	#insmod /usr/lib/modules/cfg80211.ko
+	#insmod /usr/lib/modules/xm711.ko
+	#wlandaemon &
+	echo ""
+fi
+
+if [ "$WIFI" = "XM713" ]; then
+	(
+	insmod /usr/lib/modules/wifi_pdn.ko value=49
+	insmod /usr/lib/modules/compat.ko
+	insmod /usr/lib/modules/cfg80211.ko
+	insmod /usr/lib/modules/xm713.ko
+	#wlandaemon &
+	)&
+fi
+
+if [ "$WIFI" = "RTL8188" ]; then
+	(
+	insmod /usr/lib/modules/wifi_pdn.ko value=49
+	insmod /usr/lib/modules/cfg80211.ko
+	insmod /usr/lib/modules/8188fu.ko
+	#wlandaemon &
+	)&
+fi
+
+if [ "$WIFI" = "S9083H" ]; then
+	(
+	insmod /usr/lib/modules/wifi_pdn.ko value=49
+	insmod /usr/lib/modules/cfg80211.ko
+	insmod /usr/lib/modules/9083h.ko
+	#wlandaemon &
+	)&
+fi
+
+#routeswitch &
+
+get_motor_params()
+{
+	motor_params="auto_test=0"
+        if [ -e "/mnt/mtd/Log/motorset" ];then  
+                motor_params=`cat /mnt/mtd/Log/motorset` 
+        elif [ -e "/mnt/custom/CustomConfig/motor.init" ];then
+                motor_params=`cat /mnt/custom/CustomConfig/motor.init`
+	fi
+	if [ -e "/mnt/mtd/Config/maintain" ];then
+		motor_params=`echo $motor_params | sed "s/auto_test=1/auto_test=0/g"`
+	fi
+	echo -n $motor_params
+}
+
+#insmod /usr/lib/modules/kmotor.ko $(get_motor_params)

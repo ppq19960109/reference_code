@@ -1,0 +1,7 @@
+[
+    {
+        "PacketLength": 60,
+        "PreRecord": 5,
+        "RecordMode": "ConfigRecord"
+    }
+]

@@ -1,0 +1,5 @@
+./Configure darwin64-x86_64-cc --openssldir=/Users/konghan/Workspace/Walnuts/targets/macos-amd64 shared
+
+// cross compile for hi3516dv300
+./Configure linux-generic32 --prefix=/opt/hisi-linux --openssldir=/opt/hisi-linux
+make CC=arm-himix200-linux-gcc RANLIB=arm-himix200-linux-ranlib LD=arm-himix200-linux-ld MAKEDEPPROG=arm-himix200-linux-gcc PROCESSOR=ARM

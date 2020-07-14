@@ -1,0 +1,70 @@
+frdbs.sqlite
+============
+
+config-table
+------------
+key:char*, val:char*, subsys:int
+
+subsys:0-remote   // 做为http client端，访问云端的服务器
+mps-server-host:127.0.0.1       // 消息推送服务器地址
+mps-server-port:8000            // 消息推送服务器端口
+api-server-host:127.0.0.1       // API服务器地址
+api-server-port:8080            // API服务器端口
+api-path-0:api/version          // API服务路径，POST方式
+api-path-1:api/version
+
+subsys:1-server   // 做为http server端，向第三方提供API接口
+sdkserver-ip:0.0.0.0            // 本地服务器地址，0.0.0.0表示打开所有本地地址监听
+sdkserver-port:8080             // 本地服务器端口
+
+subsys:2-linux    // 操作系统的本地配置
+devid:char*       // 设备号
+romv:char*        //  ROM版本号
+
+subsys:3-algorithm  // 算法相关的配置
+algmv:char*         // 算法版本
+distance:int        // 识别距离
+ratio:int           // 相似度
+
+subsys:4-controller
+doordelay:int       // 开门时延ms
+
+subsys:5-management
+lastupdate:date     // 最后更新时间
+
+
+user-table
+----------
+userid:char*    // 用户ID
+name:char*      // 用户名
+desc:char*      // 用户描述信息（公司部门）
+passwd:char*    // md5 checksum的密码，仅管理有此项
+phone:char*     // 电话号码
+type:int        // 0-管理员 or 1-一般用户(without passwd)
+perm:int        // 权限, 0-无权, 1-有权
+algmv:char*     // 算法版本
+feature:char*   // 特征向量, 正脸
+create:date     // 创建日期
+expire:date     // 权限过期时间
+modify:date     // 创建/修改用户时间
+
+logmatch-table
+------------
+seqnum:int          // 序列号，自动生成
+occtime:int64       // 时间戳, 毫秒数，自1970.01.01 00:00:00
+# image-id:char*    // 隐含：图片ID, 目录：年月日，文件名：时间戳
+face_x: int         // 人脸位置， x position
+face_y: int         // 人脸位置， y position
+face_w: int         // 人脸宽度
+face_h: int         // 人脸高度
+sharp: double       // 检测质量
+score: double       // 识别比率
+userid: char*       // 识别出的人脸ID， NULL 为陌生人
+feautre: blob       // 人脸特征值  // ???
+
+logops-table
+------------
+id:int          // 序列号
+occtime:int64   // 时间戳, 毫秒数，自1970.01.01 00:00:00
+userid:char*    // 操作人ID
+opstype:int     // 操作内容：修改配置、添加/删除用户...

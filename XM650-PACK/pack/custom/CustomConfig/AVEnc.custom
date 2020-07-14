@@ -1,0 +1,113 @@
+{
+   "Encode" : [
+      {
+         "MainFormat" : [
+            {
+	       "AudioEnable": true,
+               "Video" : {
+                  "BitRateControl" : "VBR",
+                  "BitRate" : 2560,
+                  "Resolution" : "1080P",
+				  "Quality": 5,
+				  "FPS" : 25,
+				  "GOP" : 1
+               }
+            },
+            {
+               "Video" : {
+                  "BitRateControl" : "VBR",
+                  "BitRate" : 2560,
+                  "Resolution" : "1080P",
+				  "Quality": 5,
+				  "FPS" : 25,
+				  "GOP" : 1
+               }
+            },
+            {
+               "Video" : {
+                  "BitRateControl" : "VBR",
+                  "BitRate" : 2560,
+                  "Resolution" : "1080P",
+				  "Quality": 5,
+				  "FPS" : 25,
+				  "GOP" : 1
+               }
+            } 
+         ],
+         "ExtraFormat" : [
+            {
+            "AudioEnable": true,
+            "VideoEnable" : true,
+               "Video" : {
+				  "BitRateControl" : "VBR",
+                  "Resolution" : "D1",
+				  "Quality": 5,
+                  "FPS" : 25,
+                  "GOP" : 1
+               }
+            }
+            ],
+            "EncodeStaticParam": [
+                {
+                    "Level": 41,
+                    "Profile": 2
+                }
+            ],
+            "SnapFormat": [
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": -3600,
+                        "GOP": 2,
+                        "Quality": 4,
+                        "Resolution": "D1"
+                    },
+                    "VideoEnable": true
+                },
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": 1,
+                        "GOP": 2,
+                        "Quality": 4,
+                        "Resolution": "D1"
+                    },
+                    "VideoEnable": false
+                },
+                {
+                    "Video": {
+                        "BitRate": 512,
+                        "BitRateControl": "VBR",
+                        "Compression": "H.264",
+                        "FPS": 1,
+                        "GOP": 2,
+                        "Quality": 4,
+                        "Resolution": "D1"
+                    },
+                    "VideoEnable": false
+                }
+         ]
+      }
+   ],
+   "SmartH264": [
+      {
+          "SmartH264": true
+      }
+   ],
+   "SmartH264V2" : [ 
+		{
+			"Smart264PlusV2" : [ 
+				{ "SmartH264Plus" : 1 }, 
+				{ "SmartH264Plus" : 1 } 
+			],
+			"Smart264V2" : [ 
+				{ "SmartH264" : true }, 
+				{ "SmartH264" : true } 
+			] 
+		} 
+	]
+}

@@ -1,0 +1,69 @@
+#
+# Copyright (c) 2019, Bashi Tech. All rights reserved.
+#
+
+CROSS =
+ARCH = amd64
+
+CC = $(CROSS)gcc
+
+LVGL = ./deps/littlevgl-6.0
+LUAJIT = ./deps/LuaJIT-2.1.0-beta3
+LIBEVENT = ./deps/libevent-2.1.11-stable
+FREETYPE = ./deps/freetype-2.4.0
+
+vpath 	%.h 	include deps/misc
+vpath 	%.c 	src deps/misc
+vpath 	%.o 	objs
+
+INCLUDE = -I. -I./include -I./deps/misc -I$(LVGL) -I$(LVGL)/lvgl -I$(LUAJIT)/src -I$(LIBEVENT)/include -I$(FREETYPE)/include
+
+
+CFLAGS = -g -O -Wall $(INCLUDE) -D__USE_XOPEN -DMACOSX_EMU=1
+
+LIBS =   -levent -levent_pthreads -lfreetype -llvgl  -lluajit  -lSDL2 -pthread -lm -ldl -lbsd
+LDFLAGS = -rdynamic -L$(LVGL) -L$(LUAJIT)/src -L$(LIBEVENT)/.libs -L$(FREETYPE)/objs/.libs $(LIBS)
+
+
+base-objs =  				\
+		logger.o			\
+		ecc.o 				\
+		sha256.o 			\
+		lodepng.o
+
+dp-objs =					\
+		bisp-amd64.o	
+
+cp-objs = 					\
+		fdrcp-utils.o 		\
+		fdrcp-lua.o   		\
+		fdrcp.o fdrcp-test.o
+
+gui-objs =					\
+		lv_gc.o				\
+		lvgui-decoder.o     \
+		lvgui-yuv.o 		\
+		lvgui.o	lvgui-test.o
+
+walnuts-objs = 				\
+		walos-utils.o 		\
+		walos-lua.o
+
+main-objs = walos.o
+
+objs = $(base-objs) $(dp-objs) $(cp-objs) $(gui-objs) $(walnuts-objs)
+
+TARGET = walos
+
+
+%.o : %.c
+	$(CC) $(CFLAGS) -c -o objs/$@  $<
+
+$(TARGET) : $(objs) $(main-objs)
+	$(CC)  -o $(TARGET)  $(addprefix objs/, $(objs) $(main-objs)) $(LDFLAGS)
+
+clean:
+	rm -f $(addprefix objs/, $(objs) $(main-objs))  $(TARGET)
+
+lv_gc.o :
+	cp $(LVGL)/lv_gc.o  objs/lv_gc.o
